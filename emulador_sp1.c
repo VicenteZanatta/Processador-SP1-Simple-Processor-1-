@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void load_M(); 	// 0 carrega valor em memoria para o acc
 void load_V(); 	// 1 carrega um valor para o acc 
@@ -27,7 +28,31 @@ struct INSTRUCTION{
 };
 typedef struct INSTRUCTION inst;
 
+
+
 int main(){
+
+	int acc = 0;
+	int pc = 0;
+	int status = 0;
+	int i = 0;
+	inst  programa[256];
+	
+	short instruction
+
+	if((FILE  *file = fopen("teste.bin", "rb")) == NULL)
+	{ 	
+		printf("ERRO AO ABRIR ARQUIVO");
+		return 0;
+	}
+	
+	while(fread(&instruction, 2,1 file) != 0)
+	{
+		programa[i].opcode = instruction & 0xFF;
+		programa[i].operand = instruction >> 8;
+		i++;
+	}
+
 
 
 	return 0;
