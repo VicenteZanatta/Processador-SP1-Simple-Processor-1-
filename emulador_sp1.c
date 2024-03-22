@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 
 void load_M(int operando); 	// 0 carrega valor em memoria para o acc
 void load_V(int operando); 	// 1 carrega um valor para o acc 
@@ -38,13 +38,15 @@ int main(){
 	int i = 0;
 	inst  programa[256];
 	
-	short instruction
+	short instruction;
 
-	if((FILE  *file = fopen("teste.bin", "rb")) == NULL)
+	FILE  * file = fopen("teste.bin", "rb");
+
+	/*if((FILE  * file = fopen("teste.bin", "rb")) == NULL)
 	{ 	
 		printf("ERRO AO ABRIR ARQUIVO");
 		return 0;
-	}
+	}*/
 	
 	while(fread(&instruction, 2, 1, file) != 0)
 	{
@@ -54,8 +56,8 @@ int main(){
 	}
 
 	switch (programa[pc].opcode)
-	{​
-    	;
+	{
+		;
 		case 0:
 			load_M(programa[pc].operand);
       		break;
@@ -134,7 +136,7 @@ int main(){
 
     	case 19:
 			hlt();
-			break:
+			break;
 		
 		default:
 			printf("OPCODE NAO ENCONTRADO");
