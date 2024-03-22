@@ -1,18 +1,6 @@
 #include <stdio.h>
 //#include <stdlib.h>
 
-void load_M(int operando); 	// 0 carrega valor em memoria para o acc
-void load_V(int operando); 	// 1 carrega um valor para o acc 
-void store(int operando); 	// 2 armazena o valor do acc para o ender. de memoria definido
-void add(int operando);		// 3
-void sub(int operando);		// 4
-void mul(int operando);		// 5
-void div(int operando);		// 6
-void inc(int operando);		// 7 incremento
-void dec(int operando);		// 8 decremento
-void and(int operando);		// 9
-void or(int operando);		// 10
-void not(int operando);		// 11
 void jmp(int operando);		// 12 desvio incondicional
 void jz(int operando);		// 13 desvio acc == 0
 void jnz(int operando);		// 14 '' acc != 0
@@ -28,15 +16,15 @@ struct INSTRUCTION{
 };
 typedef struct INSTRUCTION inst;
 
-
+int acc = 0;
 
 int main(){
 
-	int acc = 0;
 	int pc = 0;
 	int status = 0;
 	int i = 0;
 	inst  programa[256];
+	int memoria[128];
 	
 	short instruction;
 
@@ -59,51 +47,51 @@ int main(){
 	{
 		;
 		case 0:
-			load_M(programa[pc].operand);
+			acc = memoria[programa[pc].operand];
       		break;
 
     	case 1:
-			load_V(programa[pc].operand);
+			acc = memoria[programa[pc].operand];
       		break;
 
 		case 2:
-			store(programa[pc].operand);
+			memoria[programa[pc].operand] = acc;
       		break;
 
     	case 3:
-			add(programa[pc].operand);
+			acc = acc + memoria[programa[pc].operand];
       		break;
 
 		case 4:
-			sub(programa[pc].operand);
+			acc = acc - memoria[programa[pc].operand];
       		break;
 
     	case 5:
-			mul(programa[pc].operand);
+			acc = acc * memoria[programa[pc].operand];
       		break;
 
 		case 6:
-			div(programa[pc].operand);
+			acc = acc / memoria[programa[pc].operand];
       		break;
 
     	case 7:
-			inc(programa[pc].operand);
+			acc++;
       		break;
 
 		case 8:
-			dec(programa[pc].operand);
+			acc--;
       		break;
 
     	case 9:
-			and(programa[pc].operand);
+			acc = acc && memoria[programa[pc].operand];
       		break;
 
 		case 10:
-			or(programa[pc].operand);
+			acc = acc || memoria[programa[pc].operand];
       		break;
 
     	case 11:
-			not(programa[pc].operand);
+			acc = !(acc);
       		break;
 
 		case 12:
@@ -145,54 +133,6 @@ int main(){
 	return 0;
 }
 
-void load_M(int operando)
-{
-
-}
-void load_V(int operando)
-{
-
-}
-void store(int operando)
-{
-
-}
-void add(int operando)
-{
-
-}
-void sub(int operando)
-{
-
-}
-void mul(int operando)
-{
-
-}
-void div(int operando)
-{
-
-}
-void inc(int operando)
-{
-
-}
-void dec(int operando)
-{
-
-}
-void and(int operando)
-{
-
-}
-void or(int operando)
-{
-
-}
-void not(int operando)
-{
-
-}
 void jmp(int operando)
 {
 
