@@ -144,3 +144,84 @@ int main(){
 	}
 	return 0;
 }
+
+void load_M(int operando)
+{
+
+}
+void load_V(int operando)
+{
+
+}
+void store(int operando)
+{
+
+}
+void add(int operando)
+{
+
+}
+void sub(int operando)
+{
+
+}
+void mul(int operando)
+{
+
+}
+void div(int operando)
+{
+
+}
+void inc(int operando)
+{
+
+}
+void dec(int operando)
+{
+
+}
+void and(int operando)
+{
+
+}
+void or(int operando)
+{
+
+}
+void not(int operando)
+{
+
+}
+void jmp(int operando)
+{
+
+}
+void jz(int operando)
+{
+
+}
+void jnz(int operando)
+{
+
+}
+void jg(int operando)
+{
+
+}
+void jl(int operando)
+{
+
+}
+void jge(int operando)
+{
+
+}
+void jle(int operando)
+{
+
+}
+void hlt()
+{
+	
+}
