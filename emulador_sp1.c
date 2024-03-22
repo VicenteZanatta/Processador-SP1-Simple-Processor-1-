@@ -2,13 +2,6 @@
 //#include <stdlib.h>
 
 void jmp(int operando, int *pnt);		// 12 desvio incondicional
-void jz(int operando);		// 13 desvio acc == 0
-void jnz(int operando);		// 14 '' acc != 0
-void jg(int operando);		// 15 '' acc > 0
-void jl(int operando);		// 16 '' acc < 0
-void jge(int operando);		// 17 '' acc >= 0 
-void jle(int operando);		// 18 '' acc <= 0
-void hlt();					// 19 fim do programa 
 
 struct INSTRUCTION{
 	int opcode;
@@ -48,46 +41,47 @@ int main(){
 		;
 		case 0:
 			acc = memoria[programa[pc].operand];
-			pc = pc++;
+			pc++;
       		break;
 
     	case 1:
-			acc = memoria[programa[pc].operand];
-			pc = pc++;
+			acc = programa[pc].operand;
+			pc++;
       		break;
 
 		case 2:
 			memoria[programa[pc].operand] = acc;
-			pc = pc++;
+			pc++;
       		break;
 
     	case 3:
 			acc = acc + memoria[programa[pc].operand];
-			pc = pc++;
+			pc++;
       		break;
 
 		case 4:
 			acc = acc - memoria[programa[pc].operand];
-			pc = pc++;
+			pc++;
       		break;
 
     	case 5:
 			acc = acc * memoria[programa[pc].operand];
-			pc = pc++;
+			pc++;
       		break;
 
 		case 6:
 			acc = acc / memoria[programa[pc].operand];
-			pc = pc++;
+			pc++;
       		break;
 
     	case 7:
 			acc++;
-			pc = pc++;
+			pc++;
       		break;
 
 		case 8:
 			acc--;
+			pc++;
       		break;
 
     	case 9:
@@ -102,7 +96,7 @@ int main(){
 
     	case 11:
 			acc = !(acc);
-			pc = pc++;
+			pc++;
       		break;
 
 		case 12:
