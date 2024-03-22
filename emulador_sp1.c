@@ -1,10 +1,10 @@
 #include <stdio.h>
 //#include <stdlib.h>
 
-void jmp(int operando);		// 12 desvio incondicional
+void jmp(int operando, int *pnt);		// 12 desvio incondicional
 void jz(int operando);		// 13 desvio acc == 0
 void jnz(int operando);		// 14 '' acc != 0
-void jg(int operando);		// 15 '' acc > 0 
+void jg(int operando);		// 15 '' acc > 0
 void jl(int operando);		// 16 '' acc < 0
 void jge(int operando);		// 17 '' acc >= 0 
 void jle(int operando);		// 18 '' acc <= 0
@@ -16,19 +16,19 @@ struct INSTRUCTION{
 };
 typedef struct INSTRUCTION inst;
 
-int acc = 0;
-
 int main(){
-
+	
+	int acc = 0;
 	int pc = 0;
 	int status = 0;
 	int i = 0;
 	inst  programa[256];
 	int memoria[128];
-	
+
+
 	short instruction;
 
-	FILE  * file = fopen("teste.bin", "rb");
+	FILE  * file = fopen("teste", "rb");
 
 	/*if((FILE  * file = fopen("teste.bin", "rb")) == NULL)
 	{ 	
@@ -48,34 +48,42 @@ int main(){
 		;
 		case 0:
 			acc = memoria[programa[pc].operand];
+			pc = pc++;
       		break;
 
     	case 1:
 			acc = memoria[programa[pc].operand];
+			pc = pc++;
       		break;
 
 		case 2:
 			memoria[programa[pc].operand] = acc;
+			pc = pc++;
       		break;
 
     	case 3:
 			acc = acc + memoria[programa[pc].operand];
+			pc = pc++;
       		break;
 
 		case 4:
 			acc = acc - memoria[programa[pc].operand];
+			pc = pc++;
       		break;
 
     	case 5:
 			acc = acc * memoria[programa[pc].operand];
+			pc = pc++;
       		break;
 
 		case 6:
 			acc = acc / memoria[programa[pc].operand];
+			pc = pc++;
       		break;
 
     	case 7:
 			acc++;
+			pc = pc++;
       		break;
 
 		case 8:
@@ -84,46 +92,79 @@ int main(){
 
     	case 9:
 			acc = acc && memoria[programa[pc].operand];
+			pc = pc++;
       		break;
 
 		case 10:
 			acc = acc || memoria[programa[pc].operand];
+			pc = pc++;
       		break;
 
     	case 11:
 			acc = !(acc);
+			pc = pc++;
       		break;
 
 		case 12:
-			jmp(programa[pc].operand);
+			jmp(programa[pc].operand, &pc);
       		break;
 
     	case 13:
-			jz(programa[pc].operand);
+			if(acc == 0)
+			{ 
+				jmp(programa[pc].operand, &pc);
+				break;
+			}
+			pc++;
       		break;
 
 		case 14:
-			jnz(programa[pc].operand);
+			if(acc != 0)
+			{ 	
+				jmp(programa[pc].operand, &pc);
+				break;
+			}
+			pc++;
       		break;
 
     	case 15:
-			jg(programa[pc].operand);
+			if(acc > 0)
+			{ 
+				jmp(programa[pc].operand, &pc);
+				break;
+			}
+			pc++;
       		break;
 
 		case 16:
-			jl(programa[pc].operand);
+			if(acc < 0)
+			{ 
+				jmp(programa[pc].operand, &pc);
+				break;
+			}
+			pc++;
       		break;
 
     	case 17:
-			jge(programa[pc].operand);
+			if(acc >= 0)
+			{ 
+				jmp(programa[pc].operand, &pc);
+				break;
+			}
+			pc++;
       		break;
 
 		case 18:
-			jle(programa[pc].operand);
+			if(acc <= 0)
+			{ 
+				jmp(programa[pc].operand, &pc);
+				break;
+			}
+			pc++;
       		break;
 
     	case 19:
-			hlt();
+			
 			break;
 		
 		default:
@@ -133,35 +174,7 @@ int main(){
 	return 0;
 }
 
-void jmp(int operando)
+void jmp(int operando, int *pnt)
 {
-
-}
-void jz(int operando)
-{
-
-}
-void jnz(int operando)
-{
-
-}
-void jg(int operando)
-{
-
-}
-void jl(int operando)
-{
-
-}
-void jge(int operando)
-{
-
-}
-void jle(int operando)
-{
-
-}
-void hlt()
-{
-	
+	*pnt = operando++;
 }
