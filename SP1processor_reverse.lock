@@ -1,0 +1,9 @@
+#Ghidra Lock File
+#Thu May 16 17:08:32 EDT 2024
+OS\ Name=Linux
+OS\ Version=6.5.0-13parrot1-amd64
+Username=koreis
+Hostname=parrot
+<META>\ Supports\ File\ Channel\ Locking=Channel Lock
+OS\ Architecture=amd64
+Timestamp=5/16/24, 5\:08 PM
